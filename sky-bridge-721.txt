@@ -1,0 +1,156 @@
+LEGAL DISCLAIMER
+This document is for informational purposes only and does not constitute legal,
+financial, business, or investment advice. The techniques and mechanisms
+described herein are conceptual and intended to explore decentralized finance
+concepts. No claims, representations, or warranties are made with respect to
+the accuracy or completeness of the information.
+
+Nothing in this document constitutes an offer to sell, a solicitation of an offer
+to buy, or a recommendation of any security, token, or digital asset. Any actions
+undertaken based on this information are at your own risk, and you are strongly
+advised to consult with your legal, tax, or financial advisor before engaging in
+any related activity.
+
+The authors, contributors, and distributors of this document shall not be held
+liable for any loss or damage, direct or indirect, arising from the use of or
+reliance on this document.
+
+Additionally, the regulatory status of digital assets varies across
+jurisdictions. It is your responsibility to comply with applicable laws and
+regulations in your area.
+
+By accessing or using this document, you agree to be bound by this disclaimer.
+
+
+SYNTHETIC WSTX WITH GENERIC CROSS-CHAIN MESSAGING
+Nikos Baxevanis
+2024-11-30
+
+ABSTRACT
+This paper describes a system for using synthetic WSTX as an ERC-20 token on
+Ethereum. The system locks STX on the Stacks blockchain and mints a synthetic
+equivalent on Ethereum. It uses a generic cross-chain messaging protocol to
+handle communication between the Stacks and Ethereum blockchains, along with a
+decentralized relayer network to track and verify events.
+
+INTRODUCTION
+
+PROBLEM
+STX is native to Stacks and tied to Bitcoin finality. But it cannot interact with
+Ethereum DeFi systems. Users cannot use STX or its derivatives in Ethereum
+protocols without a bridge.
+
+SOLUTION
+This system introduces synthetic WSTX, backed 1:1 by STX locked on Stacks. It
+uses a generic cross-chain messaging protocol. Users lock STX on Stacks to mint
+synthetic WSTX on Ethereum.
+
+ARCHITECTURE
+
+LOCKING STX ON STACKS
+1. A lock contract on Stacks receives STX.
+2. The contract emits an event.
+3. Relayers watch these events and produce proofs for Ethereum.
+
+MINTING SYNTHETIC WSTX
+1. On Ethereum, a mint contract checks the proof.
+2. The contract mints synthetic WSTX.
+3. The user gets synthetic WSTX in their Ethereum wallet.
+
+UNLOCKING STX
+1. User burns synthetic WSTX on Ethereum.
+2. The burn event is forwarded to Stacks.
+3. The lock contract on Stacks releases STX.
+
+COMPONENTS
+
+RELAYERS
+Relayers watch the Stacks contract and submit proofs to Ethereum. They get fees.
+
+CROSS-CHAIN MESSAGING PROTOCOL
+A messaging layer links Stacks and Ethereum to handle deposit and burn events
+reliably.
+
+CONTRACTS
+- Lock Contract (Stacks): Holds STX and emits events.
+- Mint Contract (Ethereum): Mints and burns synthetic WSTX.
+- Burn function: Releases STX when synthetic WSTX is burned.
+
+BENEFITS
+- Compatibility: Access Ethereum DeFi with synthetic WSTX.
+- Security: STX stays locked on Stacks, tied to Bitcoin finality.
+- Decentralization: No central authority.
+
+MONETIZATION STRATEGIES
+
+REVENUE FROM TRANSACTION FEES
+- Minting fee (e.g., 0.3%) when users lock STX.
+- Burning fee (e.g., 0.3%) when users redeem STX.
+These fees fund keeper rewards and generate profit.
+
+KEEPER SUBSIDY VIA USER-PAID GAS FEES
+Keepers get a share of minting/burning fees, so they stay self-funded.
+
+PROTOCOL-OWNED LIQUIDITY (POL)
+The protocol provides liquidity to WSTX pools on Ethereum DEXs, earning fees.
+
+STAKING AND YIELD FARMING
+Users can stake synthetic WSTX to earn rewards. The protocol takes a small cut
+(e.g., 10%).
+
+LAUNCH TOKEN FOR GOVERNANCE AND REWARDS
+A governance token (e.g., WSTXG) manages the protocol. Some fees buy back and
+burn this token.
+
+PREMIUM FEATURES FOR USERS
+Offer premium perks, like lower fees and faster service, for a subscription fee
+or holding governance tokens.
+
+TOKENOMICS
+- Synthetic WSTX Supply: Backed 1:1 by locked STX.
+- Fees: Fund keeper rewards and treasury.
+- Utility: Trade, stake, or use WSTX in Ethereum protocols.
+
+NEXT STEPS
+1. Deploy lock and mint contracts.
+2. Integrate cross-chain messaging.
+3. Set up a relayer network with incentives.
+4. Run audits.
+
+CONCLUSION
+This system lets STX interact with Ethereum DeFi through synthetic WSTX. It uses
+a generic messaging layer and a decentralized relayer network. This expands STX
+utility while keeping security intact.
+
+LEGAL AND TECHNICAL CONSIDERATIONS
+
+LEGAL CONSIDERATIONS
+- Regulatory Classification: Synthetic WSTX might be treated as a derivative or
+  security. Some places might need registration.
+- Jurisdictional Variability: Laws differ. Specific analysis may be needed.
+- Enforceability of Disclaimers: Courts may ignore blanket disclaimers.
+- AML/KYC Compliance: If considered financial transactions, AML/KYC may apply.
+- Tax and Investor Protection: Regulators might watch tax and investor issues.
+
+TECHNICAL CONSIDERATIONS
+- Security of Cross-Chain Bridges: Complexity could allow exploits.
+- Smart Contract Risks: Bugs can cause losses. Audits are critical.
+- Decentralization and Reliability: Relayers must stay active. Collusion or drop
+  in participation can disrupt operations.
+- Maintaining the Peg: The 1:1 backing can break if attacked. Trust depends on
+  proper locking and redemption.
+
+REFERENCES
+1. Buterin, V. (2016). A next-generation smart contract and decentralized
+   application platform. Ethereum Whitepaper. Retrieved from
+   https://ethereum.org
+2. Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.
+   Retrieved from https://bitcoin.org/bitcoin.pdf
+3. Stacks Documentation. Proof of Transfer (PoX) and Bitcoin Finality.
+   Retrieved from https://docs.stacks.co
+4. Interchain Foundation. (2020). Introduction to Cross-Chain Communication
+   Protocols. Retrieved from https://interchain.io
+5. Polkadot Documentation. Bridging and Interoperability Solutions. Retrieved
+   from https://polkadot.network
+6. Chainlink Labs. Decentralized Relayer Networks and Secure Messaging.
+   Retrieved from https://chain.link
