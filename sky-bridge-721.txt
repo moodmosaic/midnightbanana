@@ -21,7 +21,6 @@ regulations in your area.
 
 By accessing or using this document, you agree to be bound by this disclaimer.
 
-
 SYNTHETIC WSTX WITH GENERIC CROSS-CHAIN MESSAGING
 Nikos Baxevanis
 2024-11-30
@@ -117,6 +116,22 @@ NEXT STEPS
 3. Set up a relayer network with incentives.
 4. Run audits.
 
+POTENTIAL ISSUES AND RECOMMENDED IMPROVEMENTS
+- Trust Assumptions: Current reliance on relayers introduces trust. Consider
+  rotating relayer sets or decentralized oracle networks to reduce reliance
+  on a single party.
+- Protocol Complexity: Multiple components increase complexity. Provide clear
+  diagrams, state machines, and workflow documentation to ease audits and
+  maintenance.
+- Regulatory Ambiguity: The paper acknowledges compliance but lacks concrete
+  guidance. Consider modular compliance logic for adapting to various
+  jurisdictions and offer detailed guidance where feasible.
+- Oracles and Data Feeds: Pricing references are not detailed. Document how
+  price oracles are selected, verified, and incentivized.
+- Security and Verification: Employ formal verification, thorough audits, and
+  bug bounties. Maintain contingency plans if relayers fail, collude, or
+  participation drops.
+
 CONCLUSION
 This system lets STX interact with Ethereum DeFi through synthetic WSTX. It uses
 a generic messaging layer and a decentralized relayer network. This expands STX
@@ -154,3 +169,12 @@ REFERENCES
    from https://polkadot.network
 6. Chainlink Labs. Decentralized Relayer Networks and Secure Messaging.
    Retrieved from https://chain.link
+
+REVISION NOTES (Revision #1)
+- Added “POTENTIAL ISSUES AND RECOMMENDED IMPROVEMENTS” section.
+- Addressed trust assumptions by suggesting rotating relayer sets or decentralized
+  oracle networks.
+- Encouraged clearer documentation, diagrams, and formal verification methods.
+- Proposed modular compliance logic and better guidance on regulatory issues.
+- Included references to price oracles and their verification, and suggested
+  employing audits, bug bounties, and contingency plans for relayer failures.
